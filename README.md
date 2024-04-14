@@ -1,16 +1,23 @@
-# mygalleryapp
+# My Gallery App (Flutter Task)
 
-My Gallery app is an application that stores my images and can upload my new image from my account
+My Gallery app is an application that stores my images and can upload my new image from my account.
 
-## Getting Started
+## Task Details
 
-This project is a starting point for a Flutter application.
+- User will login to the application using ( login api )
 
-A few resources to get you started if this is your first Flutter project:
+- user will show his/her gallery images using ( my gallery api)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- user can upload new image in his/her gallery using (upload api)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+- clean code
+- Design Matching with Photo attached
+- Design be Responsive with Phone and Tablets and Foldable Phones
+- Project Size is Small
+- the attention to details
+
+## TODO
+[TODO] MAKE Screen Of Home with Uploaded Images view
+[TODO] MAKE Logics
+[TODO] MAKE The Project With Clean Architecture
