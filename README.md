@@ -12,12 +12,11 @@ My Gallery app is an application that stores my images and can upload my new ima
 
 ## Features
 - clean code
-- Design Matching with Photo attached
-- Design be Responsive with Phone and Tablets and Foldable Phones
-- Project Size is Small
-- the attention to details
+- Design Responsive with Phone and Tablets and Foldable Phones
+- Project Size (20 MB)
 
 ## TODO
+[TODO] MAKE Login Screen With Login Logic 
 [TODO] MAKE Screen Of Home with Uploaded Images view
 [TODO] MAKE Logics
 [TODO] MAKE The Project With Clean Architecture
