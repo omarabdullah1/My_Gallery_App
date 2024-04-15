@@ -1,8 +1,9 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_gallery_app/constants/screens.dart';
+import 'package:my_gallery_app/data/local/cache_helper.dart';
 import 'package:my_gallery_app/presentation/screens/shared/tablet_detector.dart';
 import 'package:my_gallery_app/presentation/styles/colors.dart';
 import 'package:my_gallery_app/presentation/widget/default_form_field.dart';
@@ -18,7 +19,17 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GlobalCubit(),
       child: BlocConsumer<GlobalCubit, GlobalState>(
-        listener: (context, state) async {},
+        listener: (context, state) async {
+          if (state is LoginSuccessState) {
+            await CacheHelper.sharedPreferences
+                .setString('token', state.accountModel.token!.toString());
+            await CacheHelper.sharedPreferences
+                .setString('name', state.accountModel.user!.name!.toString());
+
+            Navigator.pushNamedAndRemoveUntil(
+                context, Screens.homeScreen, (route) => false);
+          }
+        },
         builder: (context, state) {
           final GlobalCubit globalCubit = context.read<GlobalCubit>();
           return Scaffold(
@@ -72,113 +83,152 @@ class LoginScreen extends StatelessWidget {
                                   maxWidth: 388.0,
                                   maxHeight: 440.0,
                                 ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 48.0,
-                                    ),
-                                    Text(
-                                      'Log in'.toUpperCase(),
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
+                                child: Form(
+                                  key: globalCubit.formKey,
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 48.0,
+                                      ),
+                                      Text(
+                                        'Log in'.toUpperCase(),
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
                                           fontFamily: 'SegoeUI',
                                           fontSize: 30.0,
-                                          color: AppColor.textBlack),
-                                    ),
-                                    const SizedBox(
-                                      height: 38.0,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.8,
-                                            height: 60.0,
-                                            constraints: const BoxConstraints(
-                                              maxWidth: 340.0,
-                                              maxHeight: 60.0,
-                                            ),
-                                            child: Center(
-                                              child: defaultFormField(
-                                                controller:
-                                                    globalCubit.emailController,
-                                                type:
-                                                    TextInputType.emailAddress,
-                                                isPassword: false,
-                                                borderRadius: 35.0,
-                                                onSubmit: (_) {},
-                                                isHint: true,
-                                                hintText: 'User Name',
+                                          color: AppColor.textBlack,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 38.0,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              height: 60.0,
+                                              constraints: const BoxConstraints(
+                                                maxWidth: 340.0,
+                                                maxHeight: 60.0,
+                                              ),
+                                              child: Center(
+                                                child: defaultFormField(
+                                                    controller: globalCubit
+                                                        .emailController,
+                                                    type: TextInputType
+                                                        .emailAddress,
+                                                    isPassword: false,
+                                                    borderRadius: 35.0,
+                                                    onSubmit: (_) {},
+                                                    isHint: true,
+                                                    hintText: 'User Name',
+                                                    isValidate: true,
+                                                    validate: (String data) {
+                                                      return data.isEmpty
+                                                          ? 'Please enter data'
+                                                          : null;
+                                                    }),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 37.0 -
-                                          8, // Size between minus padding
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.8,
-                                            height: 60.0,
-                                            constraints: const BoxConstraints(
-                                              maxWidth: 340.0,
-                                              maxHeight: 60.0,
-                                            ),
-                                            child: Center(
-                                              child: defaultFormField(
-                                                controller: globalCubit
-                                                    .passwordController,
-                                                type: TextInputType
-                                                    .visiblePassword,
-                                                isPassword: true,
-                                                borderRadius: 35.0,
-                                                onSubmit: (_) {},
-                                                isHint: true,
-                                                hintText: 'Password',
+                                      const SizedBox(
+                                        height: 37.0 -
+                                            8, // Size between minus padding
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              height: 60.0,
+                                              constraints: const BoxConstraints(
+                                                maxWidth: 340.0,
+                                                maxHeight: 60.0,
+                                              ),
+                                              child: Center(
+                                                child: defaultFormField(
+                                                    controller: globalCubit
+                                                        .passwordController,
+                                                    type: TextInputType
+                                                        .visiblePassword,
+                                                    isPassword: true,
+                                                    borderRadius: 35.0,
+                                                    onSubmit: (_) {
+                                                      if (globalCubit
+                                                          .formKey.currentState!
+                                                          .validate()) {
+                                                        globalCubit.userLogin(
+                                                          email: globalCubit
+                                                              .emailController.text,
+                                                          password: globalCubit
+                                                              .passwordController.text,
+                                                          context: context,
+                                                        );
+                                                      }
+                                                    },
+                                                    isHint: true,
+                                                    hintText: 'Password',
+                                                    isValidate: true,
+                                                    validate: (String data) {
+                                                      return data.isEmpty
+                                                          ? 'Please enter data'
+                                                          : null;
+                                                    }),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 37.0,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height: 46.0,
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 340.0,
-                                        maxHeight: 46.0,
+                                      const SizedBox(
+                                        height: 37.0,
                                       ),
-                                      child: FlatButton(
-                                        onPressed: () {},
-                                        tOrI: true,
-                                        iconWidgetState: false,
-                                        color: AppColor.buttonColor,
-                                        text: 'Submit'.toUpperCase(),
-                                        radius: 10.0,
-                                      ),
-                                    )
-                                  ],
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.8,
+                                        height: 46.0,
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 340.0,
+                                          maxHeight: 46.0,
+                                        ),
+                                        child: FlatButton(
+                                          onPressed: () {
+                                            if (globalCubit
+                                                .formKey.currentState!
+                                                .validate()) {
+                                              globalCubit.userLogin(
+                                                email: globalCubit
+                                                    .emailController.text,
+                                                password: globalCubit
+                                                    .passwordController.text,
+                                                context: context,
+                                              );
+                                            }
+                                          },
+                                          tOrI: true,
+                                          iconWidgetState: false,
+                                          color: AppColor.buttonColor,
+                                          text: 'Submit'.toUpperCase(),
+                                          radius: 10.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

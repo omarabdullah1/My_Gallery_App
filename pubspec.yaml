@@ -23,6 +23,7 @@ dependencies:
   intl: ^0.18.0
   dropdown_button2: ^2.3.9
   barcode_widget: ^2.0.2
+  image_picker: ^1.0.8
 
 
 flutter_localizations:
@@ -47,8 +48,8 @@ flutter:
   fonts:
     - family: SegoeUI
       fonts:
-        - asset: assets/fonts/Segoe UI Bold.ttf
-  #  fonts:
-  #    - family: cairo
-  #      fonts:
-  #        - asset: assets/fonts/Cairo-VariableFont_wght.ttf
+        - asset: assets/fonts/Segoe_UI_Bold.ttf
+
+    - family: BalooThambi
+      fonts:
+        - asset: assets/fonts/BalooThambi2_VariableFont_wght.ttf

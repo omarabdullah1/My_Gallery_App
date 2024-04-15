@@ -12,6 +12,10 @@ class AppColor {
   static const Color textBlack = Color(0xFF4A4A4A);
   static const Color buttonColor = Color(0xFF7BB3FF);
   static const Color black = Color(0xFF000000);
+  static const Color uploadButton = Color(0xFFFFEB38);
+  static const Color logoutButton = Color(0xFFC83B3B);
+  static const Color orange = Color(0xFFFF9800);
+  static const Color yellow = Color(0xFFFFEB3B);
 
   static const MaterialColor defaultColor = MaterialColor(
     0xFF005DA3,

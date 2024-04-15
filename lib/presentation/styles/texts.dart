@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../business_logic/app_localization.dart';
-import '../../main.dart';
 import 'colors.dart';
 
 class Texts {

@@ -11,7 +11,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: baseURL,
+        baseUrl: EndPoints.baseURL,
         receiveDataWhenStatusError: true,
       ),
     );

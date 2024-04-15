@@ -2,12 +2,16 @@
 class Assets {
   Assets._();
 
-  static const String fontsSegoeUIBold = 'assets/fonts/Segoe UI Bold.ttf';
+  static const String fontsBalooThambi2VariableFontWght = 'assets/fonts/BalooThambi2_VariableFont_wght.ttf';
+  static const String fontsSegoeUIBold = 'assets/fonts/Segoe_UI_Bold.ttf';
   static const String i18nAr = 'assets/i18n/ar.json';
   static const String i18nEn = 'assets/i18n/en.json';
+  static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesBackground = 'assets/images/background.png';
   static const String imagesComponent0 = 'assets/images/component0.png';
   static const String imagesComponent1 = 'assets/images/component1.png';
   static const String imagesComponent2 = 'assets/images/component2.png';
+  static const String imagesLogoutIcon = 'assets/images/logout_icon.png';
+  static const String imagesUploadIcon = 'assets/images/upload_icon.png';
 
 }

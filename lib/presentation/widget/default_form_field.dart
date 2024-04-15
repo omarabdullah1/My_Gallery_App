@@ -37,7 +37,7 @@ Widget defaultFormField({
       onFieldSubmitted: (_) => onSubmit!(_),
       onChanged: onChange,
       onTap: () => onTap,
-      validator: (_) => validate!(_),
+      validator: (_) => isValidate?validate!(_):null,
       decoration: InputDecoration(
         hintText: isHint ? hintText : null,
         hintStyle: isHint ? const TextStyle(color: Colors.grey) : null,
@@ -53,14 +53,14 @@ Widget defaultFormField({
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: AppColor.error,
-            width: 2.5,
+            width: 1.0,
           ),
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: AppColor.error,
-            width: 2.5,
+            width: 1.0,
           ),
           borderRadius: BorderRadius.circular(borderRadius),
         ),
