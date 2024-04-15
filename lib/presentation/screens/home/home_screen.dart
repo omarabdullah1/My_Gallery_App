@@ -3,12 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_gallery_app/constants/screens.dart';
 import 'package:my_gallery_app/data/local/cache_helper.dart';
 import 'package:my_gallery_app/presentation/screens/shared/tablet_detector.dart';
 import 'package:my_gallery_app/presentation/styles/colors.dart';
+import 'package:my_gallery_app/presentation/styles/texts.dart';
 import '../../../business_logic/global_cubit/global_cubit.dart';
 import '../../../generated/assets.dart';
 
@@ -97,14 +99,9 @@ class HomeScreen extends StatelessWidget {
                           top: 35.0,
                           left: 27.0,
                           child: Text(
-                            'Welcome\n${CacheHelper.sharedPreferences.getString('name').toString()}',
+                            Texts.welcomeHome,
                             textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              fontFamily: 'BalooThambi',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 32.0,
-                              color: AppColor.textBlack,
-                            ),
+                            style: TextStyles.welcomHomeStyle,
                           ),
                         ),
                         Center(
@@ -151,15 +148,10 @@ class HomeScreen extends StatelessWidget {
                                               const SizedBox(
                                                 width: 10.0,
                                               ),
-                                              const Text(
-                                                'log out',
+                                              Text(
+                                                Texts.logout,
                                                 textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontFamily: 'BalooThambi',
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 20.0,
-                                                  color: AppColor.textBlack,
-                                                ),
+                                                style: TextStyles.logoutStyle,
                                               ),
                                             ],
                                           ),
@@ -192,15 +184,10 @@ class HomeScreen extends StatelessWidget {
                                               const SizedBox(
                                                 width: 10.0,
                                               ),
-                                              const Text(
-                                                'upload',
+                                              Text(
+                                                Texts.upload,
                                                 textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontFamily: 'BalooThambi',
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 20.0,
-                                                  color: AppColor.textBlack,
-                                                ),
+                                                style: TextStyles.uploadStyle,
                                               ),
                                             ],
                                           ),
@@ -218,7 +205,7 @@ class HomeScreen extends StatelessWidget {
                                     horizontal: 28.0),
                                 child: SizedBox(
                                   width: double.infinity,
-                                  height: constraints.maxHeight*0.71,
+                                  height: constraints.maxHeight * 0.71,
                                   child: GridView.count(
                                     crossAxisCount: 3,
                                     crossAxisSpacing: 8.0,

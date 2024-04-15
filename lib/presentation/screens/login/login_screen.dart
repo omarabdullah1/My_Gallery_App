@@ -6,6 +6,7 @@ import 'package:my_gallery_app/constants/screens.dart';
 import 'package:my_gallery_app/data/local/cache_helper.dart';
 import 'package:my_gallery_app/presentation/screens/shared/tablet_detector.dart';
 import 'package:my_gallery_app/presentation/styles/colors.dart';
+import 'package:my_gallery_app/presentation/styles/texts.dart';
 import 'package:my_gallery_app/presentation/widget/default_form_field.dart';
 import 'package:my_gallery_app/presentation/widget/flat_button.dart';
 import '../../../business_logic/global_cubit/global_cubit.dart';
@@ -22,9 +23,9 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) async {
           if (state is LoginSuccessState) {
             await CacheHelper.sharedPreferences
-                .setString('token', state.accountModel.token!.toString());
-            await CacheHelper.sharedPreferences
-                .setString('name', state.accountModel.user!.name!.toString());
+                .setString(Texts.token, state.accountModel.token!.toString());
+            await CacheHelper.sharedPreferences.setString(
+                Texts.name, state.accountModel.user!.name!.toString());
 
             Navigator.pushNamedAndRemoveUntil(
                 context, Screens.homeScreen, (route) => false);
@@ -90,15 +91,9 @@ class LoginScreen extends StatelessWidget {
                                       const SizedBox(
                                         height: 48.0,
                                       ),
-                                      Text(
-                                        'Log in'.toUpperCase(),
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontFamily: 'SegoeUI',
-                                          fontSize: 30.0,
-                                          color: AppColor.textBlack,
-                                        ),
-                                      ),
+                                      Text(Texts.login.toUpperCase(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyles.loginStyle),
                                       const SizedBox(
                                         height: 38.0,
                                       ),
@@ -128,11 +123,12 @@ class LoginScreen extends StatelessWidget {
                                                     borderRadius: 35.0,
                                                     onSubmit: (_) {},
                                                     isHint: true,
-                                                    hintText: 'User Name',
+                                                    hintText: Texts.userName,
                                                     isValidate: true,
                                                     validate: (String data) {
                                                       return data.isEmpty
-                                                          ? 'Please enter data'
+                                                          ? Texts
+                                                              .pleaseEnterUserName
                                                           : null;
                                                     }),
                                               ),
@@ -174,19 +170,22 @@ class LoginScreen extends StatelessWidget {
                                                           .validate()) {
                                                         globalCubit.userLogin(
                                                           email: globalCubit
-                                                              .emailController.text,
+                                                              .emailController
+                                                              .text,
                                                           password: globalCubit
-                                                              .passwordController.text,
+                                                              .passwordController
+                                                              .text,
                                                           context: context,
                                                         );
                                                       }
                                                     },
                                                     isHint: true,
-                                                    hintText: 'Password',
+                                                    hintText: Texts.password,
                                                     isValidate: true,
                                                     validate: (String data) {
                                                       return data.isEmpty
-                                                          ? 'Please enter data'
+                                                          ? Texts
+                                                              .pleaseEnterPassword
                                                           : null;
                                                     }),
                                               ),
@@ -223,7 +222,7 @@ class LoginScreen extends StatelessWidget {
                                           tOrI: true,
                                           iconWidgetState: false,
                                           color: AppColor.buttonColor,
-                                          text: 'Submit'.toUpperCase(),
+                                          text: Texts.submit.toUpperCase(),
                                           radius: 10.0,
                                         ),
                                       )
@@ -252,12 +251,9 @@ class LoginScreen extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.50,
                         child: Center(
                           child: Text(
-                            'My\nGallery'.toUpperCase(),
+                            Texts.myGallery.toUpperCase(),
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontFamily: 'SegoeUI',
-                                fontSize: 50.0,
-                                color: AppColor.textBlack),
+                            style: TextStyles.myGalleryStyle,
                           ),
                         ),
                       ),

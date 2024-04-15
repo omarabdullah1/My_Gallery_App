@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../styles/colors.dart';
+import '../styles/colors.dart';
 
 class MixedGradient extends StatelessWidget {
   const MixedGradient({super.key});
