@@ -11,12 +11,7 @@ My Gallery app is an application that stores my images and can upload my new ima
 - user can upload new image in his/her gallery using (upload api)
 
 ## LOOK VIDEO
-
-<table>
-  <tr>
-<td><video src="./video/mygalleryapp.mp4" ></video> </td>
- </tr>
-</table>
+[mygalleryapp.mp4](video%2Fmygalleryapp.mp4)
 
 ## Features
 

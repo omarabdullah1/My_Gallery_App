@@ -23,16 +23,12 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) async {
           if (state is LoginSuccessState) {
             await CacheHelper.sharedPreferences
-                .setString(Texts.token, state.accountModel!.token!.toString())
-                .then((value) async {
-              await CacheHelper.sharedPreferences
-                  .setString(
-                      Texts.name, state.accountModel!.user!.name!.toString())
-                  .then((value) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, Screens.homeScreen, (route) => false);
-              });
-            });
+                .setString(Texts.token, state.accountModel.token!.toString());
+            await CacheHelper.sharedPreferences.setString(
+                Texts.name, state.accountModel.user!.name!.toString());
+
+            Navigator.pushNamedAndRemoveUntil(
+                context, Screens.homeScreen, (route) => false);
           }
         },
         builder: (context, state) {

@@ -10,7 +10,6 @@ import 'package:my_gallery_app/data/local/cache_helper.dart';
 import 'package:my_gallery_app/data/models/account_model.dart';
 import 'package:my_gallery_app/data/models/images_model.dart';
 import 'package:my_gallery_app/data/remote/dio_helper.dart';
-import 'package:my_gallery_app/presentation/styles/texts.dart';
 import 'package:my_gallery_app/presentation/widget/toast.dart';
 
 part 'global_state.dart';
@@ -35,7 +34,7 @@ class GlobalCubit extends Cubit<GlobalState> {
         'email': email,
         'password': password,
       },
-    ).then((value) {
+    ).then((value)  {
       log(value.data.toString());
       accountModel = AccountModel.fromJson(value.data);
       fToast.init(context);
